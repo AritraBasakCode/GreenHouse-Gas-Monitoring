@@ -6,6 +6,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+tf.get_logger().setLevel('ERROR')
 from sklearn.preprocessing import MinMaxScaler
 from helpers import fetch_location_air_quality, extract_latest_pollutant
 from config import LSTM_MODEL_PATH
@@ -197,4 +198,5 @@ if fetch_btn and "co" in df_local.columns:
                 st.metric("Forecasted CO (mg/m³)", f"{pred_mg:.4f}")
 
             except Exception as e:
+
                 st.error("Prediction failed: " + str(e))

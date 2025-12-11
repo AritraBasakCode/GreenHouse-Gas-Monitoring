@@ -190,7 +190,7 @@ if fetch_btn and "co" in df_local.columns:
         else:
             inp = scaled[-window:].reshape(1, window, 1)
             try:
-                model = tf.keras.models.load_model("lstm_model.h5", compile=False)
+                model = tf.keras.models.load_model(LSTM_MODEL_PATH, compile=False)
                 pred_scaled = model.predict(inp)
                 pred_ug = float(scaler.inverse_transform(pred_scaled)[0][0])
                 pred_mg = pred_ug / 1000.0   # 🔥 PATCH
@@ -200,4 +200,5 @@ if fetch_btn and "co" in df_local.columns:
             except Exception as e:
 
                 st.error("Prediction failed: " + str(e))
+
 
